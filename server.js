@@ -13,9 +13,12 @@ for (var i = 0, l = args.length; i < l; i ++) {
 
 // Setup constants
 var ROOT_PATH = process.cwd() + '/';
-ROOT_PATH += formattedArgs['-r'] || formattedArgs['--root'] || '';
-ROOT_PATH += '/';
-var PORT = formattedArgs['-p'] || formattedArgs['--port'] || 3000;
+
+if (formattedArgs['--root']) {
+  ROOT_PATH += formattedArgs['--root'] + '/';
+}
+
+var PORT = formattedArgs['--port'] || 3000;
 
 // Required modules
 var http = require('http');
