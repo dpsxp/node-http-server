@@ -67,7 +67,6 @@ server.on('request', function(req, res) {
   console.log('Serving request for ', path);
   type = getType(path);
   file = getFile(path);
-  console.log(file);
 
   fs.readFile(file, function (err, data) {
     if (err) {
