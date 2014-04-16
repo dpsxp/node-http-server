@@ -1,5 +1,4 @@
 // Node simpe http server
-
 // Get optional args
 var args = process.argv.splice(2);
 var formattedArgs = {};
@@ -20,10 +19,13 @@ if (formattedArgs['--root']) {
 
 var PORT = formattedArgs['--port'] || 3000;
 
+
+
 // Required modules
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var ROOT_PATH = process.cwd() + '/';
 
 var types = {
   'js' : 'application/javascript',
@@ -55,6 +57,7 @@ function getFile (url) {
 function notFound(url, res) {
   console.log('Could find ', url);
   res.writeHead(404, {"Content-Type": 'text/html'});
+  res.end();
 }
 
 var server = http.createServer();
@@ -68,15 +71,9 @@ server.on('request', function(req, res) {
   type = getType(path);
   file = getFile(path);
 
-  fs.readFile(file, function (err, data) {
-    if (err) {
+  fs.createReadStream(file).on('error', function () {
       notFound(path, res);
-    } else {
-      res.writeHead(200, {"Content-Type": type});
-      res.write(data);
-    }
-    res.end();
-  });
+  }).pipe(res)
 });
 
 server.listen(PORT, function () {
