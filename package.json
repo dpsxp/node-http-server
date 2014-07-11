@@ -1,0 +1,24 @@
+{
+  "name": "node-http-server",
+  "version": "0.0.1",
+  "description": "Simple http server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dpsxp/node-http-server.git"
+  },
+  "keywords": [
+    "HTTP",
+    "server"
+  ],
+  "author": "Daniel Paulino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpsxp/node-http-server/issues"
+  },
+  "homepage": "https://github.com/dpsxp/node-http-server"
+}
