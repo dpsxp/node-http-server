@@ -1,3 +1,4 @@
+'use strict';
 // Node simpe http server
 // Required modules
 var http = require('http');
@@ -25,23 +26,22 @@ server.on('request', function(req, res) {
   console.log('Serving request for ', path);
   type = helpers.getType(path);
   file = getFile(path);
-  console.log(path);
 
   fs.createReadStream(file).on('error', function () {
       helpers.notFound(path, res);
-  }).pipe(res)
+  }).pipe(res);
 });
 
 module.exports = {
     start : function (port, root) {
-        var port = port || 3000;
+        var p = port || 3000;
         if (root) {
             ROOT_PATH += root + '/';
         }
 
-        server.listen(port, function () {
-          console.log('Server started at port ' + port);
+        server.listen(p, function () {
+          console.log('Server started at port ' + p);
         });
     }
-}
+};
 

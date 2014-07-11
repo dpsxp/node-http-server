@@ -9,7 +9,7 @@ for (var i = 0, l = args.length; i < l; i ++) {
   if (args[i].match(/^-+/)) {
     formattedArgs[args[i]] = args[i + 1];
   }
-};
+}
 
 // Setup constants
 var ROOT_PATH = '';
