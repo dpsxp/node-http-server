@@ -1,45 +1,12 @@
 // Node simpe http server
-// Get optional args
-var args = process.argv.splice(2);
-var formattedArgs = {};
-
 // Required modules
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
-
-// Simple args parse
-for (var i = 0, l = args.length; i < l; i ++) {
-  if (args[i].match(/^-+/)) {
-    formattedArgs[args[i]] = args[i + 1];
-  }
-};
-
-// Setup constants
+var helpers = require('./lib/helpers');
 var ROOT_PATH = process.cwd() + '/';
-var PORT = formattedArgs['--port'] || 3000;
 
-if (formattedArgs['--root']) {
-  ROOT_PATH += formattedArgs['--root'] + '/';
-}
-
-var types = {
-  'js' : 'application/javascript',
-  'json': 'application/json',
-  'html' : 'text/html',
-  'png': 'image/png',
-  'jpeg': 'image/jpeg',
-  'gif': 'image/gif'
-};
-
-function getType (url) {
-  var type = url.split('.').pop();
-  // Default extension
-  if (type === '/') {
-    type = 'html';
-  }
-  return types[type];
-}
+var server = http.createServer();
 
 function getFile (url) {
   if (url === '/') {
@@ -50,28 +17,31 @@ function getFile (url) {
   }
 }
 
-function notFound(url, res) {
-  console.log('Could find ', url);
-  res.writeHead(404, {"Content-Type": 'text/html'});
-  res.end();
-}
-
-var server = http.createServer();
-
 server.on('request', function(req, res) {
   var path = url.parse(req.url).pathname,
       type,
       file;
 
   console.log('Serving request for ', path);
-  type = getType(path);
+  type = helpers.getType(path);
   file = getFile(path);
+  console.log(path);
 
   fs.createReadStream(file).on('error', function () {
-      notFound(path, res);
+      helpers.notFound(path, res);
   }).pipe(res)
 });
 
-server.listen(PORT, function () {
-  console.log('Server started at port ' + PORT);
-});
+module.exports = {
+    start : function (port, root) {
+        var port = port || 3000;
+        if (root) {
+            ROOT_PATH += root + '/';
+        }
+
+        server.listen(port, function () {
+          console.log('Server started at port ' + port);
+        });
+    }
+}
+

@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Simple http server",
   "main": "server.js",
+  "bin": {
+     "server" : "bin/cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,10 +18,20 @@
     "HTTP",
     "server"
   ],
-  "author": "Daniel Paulino",
+  "author": {
+    "name": "Daniel Paulino"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dpsxp/node-http-server/issues"
   },
-  "homepage": "https://github.com/dpsxp/node-http-server"
+  "homepage": "https://github.com/dpsxp/node-http-server",
+  "readme": "node-http-server\n================\n\nNodeJS Simple HTTP Server\n\nThis a simple HTTP server made with nodejs.   \nI know there's a lot of http server around, and also I should be using some task runner (because that's what cool kids are doing), But I made this one to better understand how nodejs work.\n\n## How to use\n\nFor now just copy it and run \n\n    node server.js\n\nYou can also set optional params \n\n    node server.js --root ROOT_PATH --port PORT\n\n",
+  "readmeFilename": "README.md",
+  "_id": "node-http-server@0.0.1",
+  "dist": {
+    "shasum": "d53b6de5a53ec61398e1875c12691670bab4edbf"
+  },
+  "_resolved": "git+https://github.com/dpsxp/node-http-server.git#4e6fcd42cea59ee293de2ea2337135aab35e11a5",
+  "_from": "git+https://github.com/dpsxp/node-http-server.git"
 }
