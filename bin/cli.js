@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Get optional args
 var args = process.argv.splice(2);
 var formattedArgs = {};

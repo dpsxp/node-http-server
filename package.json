@@ -4,7 +4,7 @@
   "description": "Simple http server",
   "main": "server.js",
   "bin": {
-     "server" : "bin/cli.js"
+     "node-http-server" : "./bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
