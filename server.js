@@ -3,6 +3,11 @@
 var args = process.argv.splice(2);
 var formattedArgs = {};
 
+// Required modules
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+
 // Simple args parse
 for (var i = 0, l = args.length; i < l; i ++) {
   if (args[i].match(/^-+/)) {
@@ -12,20 +17,11 @@ for (var i = 0, l = args.length; i < l; i ++) {
 
 // Setup constants
 var ROOT_PATH = process.cwd() + '/';
+var PORT = formattedArgs['--port'] || 3000;
 
 if (formattedArgs['--root']) {
   ROOT_PATH += formattedArgs['--root'] + '/';
 }
-
-var PORT = formattedArgs['--port'] || 3000;
-
-
-
-// Required modules
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var ROOT_PATH = process.cwd() + '/';
 
 var types = {
   'js' : 'application/javascript',
